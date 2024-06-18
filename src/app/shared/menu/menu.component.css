@@ -1,0 +1,139 @@
+/* Estilos del encabezado principal */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo-titulo a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+header .logo-titulo i {
+  background-color: #fff3d2;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+header .logo-titulo h1 {
+  font-size: 24px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+header nav a:hover {
+  color: #ff6b01;
+}
+
+header nav .selected {
+  color: #ff6b01;
+}
+
+header .carrito {
+  font-weight: bold;
+  text-align: right;
+  width: 150px;
+}
+
+header .carrito a {
+  text-decoration: none;
+  color: #000;
+}
+
+header .carrito .icono-carrito {
+  display: inline-block;
+  background-color: #fff3d2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 12px;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+}
+
+header .carrito .icono-carrito:hover {
+  background-color: #fdc20c;
+}
+
+header .carrito .total-item-carrito {
+  position: absolute;
+  background-color: #fdc20c;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  line-height: 15px;
+}
+
+#nav-responsive {
+  font-size: 18px;
+  display: none;
+}
+
+#close-responsive {
+  display: none;
+}
+
+body{
+  background: url("../../../assets/img/fondopantalla.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 50px;
+}
+/* Sección responsive */
+@media screen and (max-width: 950px) {
+  nav {
+      display: none;
+  }
+
+  #nav-responsive {
+      display: block;
+  }
+
+  nav.menu-responsive {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #e9b18b;
+      z-index: 100;
+  }
+
+  nav.menu-responsive a {
+      color: #fff !important;
+      display: block;
+      text-align: center;
+      font-size: 45px;
+      margin: 15px 0;
+  }
+
+  #close-responsive {
+      display: block;
+      line-height: 40px;
+      color: #fff;
+      font-size: 30px;
+      text-align: center;
+  }
+
+  #close-responsive i {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      line-height: 38px;
+  }
+}

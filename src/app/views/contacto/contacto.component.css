@@ -7,10 +7,10 @@
     font-family: 'Open Sans';
 }
 body{
-    background: url("../assets/img/fondopantalla.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 50px;
+  background: url("../../../assets/img/fondopantalla.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 50px;
 }
 .contenedor{
     background-color: #d4e4ff;
