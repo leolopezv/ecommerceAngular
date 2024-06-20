@@ -6,6 +6,17 @@
     box-sizing: border-box;
     font-family: 'Open Sans';
 }
+
+h2{
+    text-align: center;
+}
+
+#servicios{
+    text-align: justify;
+}
+
+
+
 body{
   background: url("../../../assets/img/fondopantalla.jpg");
   background-size: cover;
