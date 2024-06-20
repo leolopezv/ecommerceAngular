@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './shared/menu/menu.component';
 import { RecursosService } from './servicios/recursos.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BlogData } from './interfaz/foto';
+import { Usuarios } from './interfaz/usuarios';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +13,12 @@ import { BlogData } from './interfaz/foto';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'clienteAngular';
-  blogData: BlogData | null = null;  // Cambiado a BlogData
-
-  constructor(private recursosService: RecursosService) {}
-
-  ngOnInit(): void {
-    this.recursosService.obtenerDatos().subscribe(respuesta => {
-      this.blogData = respuesta;
-    });
+  usuarios: Usuarios[] = [];
+  constructor(private recursosService: RecursosService) {
+    recursosService.obtenerDatos().subscribe(respuesta => {
+      this.usuarios = respuesta as Array<Usuarios>;
+    })
   }
 }
-
-
