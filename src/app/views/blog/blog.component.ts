@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RecursosService } from '../../servicios/recursos.service';
-import { Usuarios } from '../../interfaz/usuarios';
+import { Usuario } from '../../interfaz/usuario';
 
 @Component({
   selector: 'app-blog',
@@ -15,10 +15,11 @@ import { Usuarios } from '../../interfaz/usuarios';
 
 export class BlogComponent {
   title = 'Blog de usuarios';
-  usuarios: Usuarios[] = [];
+  usuarios: Usuario[] = [];
+
   constructor(private recursosService: RecursosService) {
-    recursosService.obtenerDatos().subscribe(respuesta => {
-      this.usuarios = respuesta as Array<Usuarios>;
+    recursosService.obtenerUsuarios().subscribe(respuesta => {
+      this.usuarios = respuesta as Array<Usuario>;
     })
   }
 }

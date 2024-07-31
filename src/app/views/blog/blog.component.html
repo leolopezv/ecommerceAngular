@@ -7,35 +7,25 @@
     <img src="https://wallpapers.com/images/hd/kanye-west-in-hat-png-usx50-tcqrmq2s5nh3zcla.jpg" class="card-img-top" alt="Mejor Cliente">
     <div class="card-body">
       <p class="card-text">
-        A nuestro mejor cliente:<br>
-        <strong>Leanne Graham</strong><br>
-        Por haber comprado más de $1000 en gorras al año
+        Nuestro gerente:<br>
+        <strong>Kanye West</strong><br>
+        Agradecemos su preferencia. Nos esforzamos por ofrecerle siempre lo mejor.
       </p>
     </div>
   </div>
   <br>
-  <table class="table table-borderless table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Usuario</th>
-        <th>Correo</th>
-        <th>Celular</th>
-        <th>Sitio Web</th>
-        <th>Empresa</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let user of usuarios">
-      <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.phone }}</td>
-        <td>{{ user.website }}</td>
-        <td>{{ user.company.name }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="blog">
+    <div class="fila" *ngFor="let usuario of usuarios">
+      <div class="col">
+        <div class="contenido">
+          <header>
+            <h2>{{ usuario.nombre }}</h2>
+          </header>
+          <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+          <p><strong>Celular:</strong> {{ usuario.celular }}</p>
+          <p><strong>Comentario:</strong> {{ usuario.comentario }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

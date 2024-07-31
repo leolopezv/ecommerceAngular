@@ -9,9 +9,7 @@ import { HttpClient} from '@angular/common/http';
 export class RecursosService {
 
   constructor(private http: HttpClient) { }
-  obtenerDatos(){
-
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  obtenerUsuarios(){
+    return this.http.get('http://localhost:3000/rest/usuarios/findAll/json')
     }
-
   }

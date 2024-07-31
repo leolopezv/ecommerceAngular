@@ -3,7 +3,6 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './shared/menu/menu.component';
 import { RecursosService } from './servicios/recursos.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Usuarios } from './interfaz/usuarios';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +14,4 @@ import { Usuarios } from './interfaz/usuarios';
 })
 export class AppComponent {
   title = 'clienteAngular';
-  usuarios: Usuarios[] = [];
-  constructor(private recursosService: RecursosService) {
-    recursosService.obtenerDatos().subscribe(respuesta => {
-      this.usuarios = respuesta as Array<Usuarios>;
-    })
-  }
 }
