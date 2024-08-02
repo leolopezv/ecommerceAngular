@@ -1,5 +1,5 @@
 <section id="servicios">
-  <h2>{{title}}</h2>
+  <h2>{{ title }}</h2>
   <br>
   <p>Estos son nuestros mejores clientes, aquellos que han confiado en nosotros a lo largo de los años. Su satisfacción y el éxito continuo son el testimonio de nuestro compromiso por ofrecer soluciones innovadoras y personalizadas. Cada proyecto que emprendemos es una nueva oportunidad para demostrar nuestra dedicación y excelencia, asegurando que superamos sus expectativas en cada paso del camino. Agradecemos profundamente la confianza depositada en nosotros y nos esforzamos día a día por fortalecer esa relación.</p>
   <br>
@@ -24,8 +24,37 @@
           <p><strong>Correo:</strong> {{ usuario.correo }}</p>
           <p><strong>Celular:</strong> {{ usuario.celular }}</p>
           <p><strong>Comentario:</strong> {{ usuario.comentario }}</p>
+          <button *ngIf="usuario.id !== undefined" (click)="editarUsuario(usuario.id!)" class="btn btn-edit">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button *ngIf="usuario.id !== undefined" (click)="borrarUsuario(usuario.id!)" class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
         </div>
       </div>
+    </div>
+    <div *ngIf="usuarioEditando">
+      <h3>Editar Usuario</h3>
+      <form (ngSubmit)="guardarUsuarioEditado()">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" [(ngModel)]="usuarioEditando.nombre" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" [(ngModel)]="usuarioEditando.correo" name="correo" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="celular">Celular:</label>
+          <input type="text" id="celular" [(ngModel)]="usuarioEditando.celular" name="celular" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="comentario">Comentario:</label>
+          <input type="text" id="comentario" [(ngModel)]="usuarioEditando.comentario" name="comentario" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
+      </form>
     </div>
   </div>
 </section>

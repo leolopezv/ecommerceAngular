@@ -12,11 +12,19 @@ export class RecursosService {
 
   constructor(private http: HttpClient) { }
 
+  agregarUsuario(usuario: Usuario) {
+    return this.http.post(`${this.apiUrl}/save`, usuario);
+  }
+
   obtenerUsuarios() {
     return this.http.get(`${this.apiUrl}/findAll/json`);
   }
 
-  agregarUsuario(usuario: Usuario) {
-    return this.http.post(`${this.apiUrl}/save`, usuario);
+  editarUsuario(usuario: Usuario) {
+    return this.http.put(`${this.apiUrl}/update/${usuario.id}`, usuario);
+  }
+
+  borrarUsuario(id: number) {
+    return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
 }

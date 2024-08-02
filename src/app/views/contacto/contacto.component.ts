@@ -15,7 +15,7 @@ import { Usuario } from '../../interfaz/usuario';
 })
 export class ContactoComponent {
 
-  title = 'Contacto';
+  title = 'Envíanos tus comentarios';
   usuario: Usuario = {
     nombre: '',
     correo: '',
@@ -33,7 +33,7 @@ export class ContactoComponent {
         this.successMessage = 'Usuario agregado correctamente.';
         setTimeout(() => {
           this.successMessage = '';
-        }, 3000); 
+        }, 3000);
       },
       (error) => {
         console.error('Error al agregar usuario:', error);
