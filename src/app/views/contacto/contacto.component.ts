@@ -1,12 +1,53 @@
 import { Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RecursosService } from '../../servicios/recursos.service';
+import { Usuario } from '../../interfaz/usuario';
 
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule, CommonModule, FormsModule],
+  providers: [RecursosService],
   templateUrl: './contacto.component.html',
-  styleUrl: './contacto.component.css'
+  styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent {
 
+  title = 'Contacto';
+  usuario: Usuario = {
+    nombre: '',
+    correo: '',
+    celular: '',
+    comentario: ''
+  };
+  successMessage: string = '';
+
+  constructor(private recursosService: RecursosService) {}
+
+  agregarUsuario(usuario: Usuario) {
+    this.recursosService.agregarUsuario(usuario).subscribe(
+      (response) => {
+        console.log('Usuario agregado:', response);
+        this.successMessage = 'Usuario agregado correctamente.';
+        setTimeout(() => {
+          this.successMessage = '';
+        }, 3000); 
+      },
+      (error) => {
+        console.error('Error al agregar usuario:', error);
+      }
+    );
+  }
+
+  onSubmit() {
+    this.agregarUsuario(this.usuario);
+    this.usuario = {
+      nombre: '',
+      correo: '',
+      celular: '',
+      comentario: ''
+    };
+  }
 }
