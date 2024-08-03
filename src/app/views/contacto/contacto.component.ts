@@ -23,6 +23,8 @@ export class ContactoComponent {
     comentario: ''
   };
   successMessage: string = '';
+  success = false;
+  buttonText = 'Enviar Registro';
 
   constructor(private recursosService: RecursosService) {}
 
@@ -31,8 +33,12 @@ export class ContactoComponent {
       (response) => {
         console.log('Usuario agregado:', response);
         this.successMessage = 'Usuario agregado correctamente.';
+        this.success = true;
+        this.buttonText = '¡Éxito!';
         setTimeout(() => {
           this.successMessage = '';
+          this.success = false;
+          this.buttonText = 'Enviar Registro';
         }, 3000);
       },
       (error) => {

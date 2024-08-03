@@ -8,7 +8,7 @@ import { Usuario } from '../../interfaz/usuario';
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule], 
+  imports: [HttpClientModule, CommonModule, FormsModule],
   providers: [RecursosService],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css']

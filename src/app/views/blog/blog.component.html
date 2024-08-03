@@ -6,11 +6,11 @@
   <div class="card" style="width: 18rem; margin: 0 auto;">
     <img src="https://wallpapers.com/images/hd/kanye-west-in-hat-png-usx50-tcqrmq2s5nh3zcla.jpg" class="card-img-top" alt="Mejor Cliente">
     <div class="card-body">
-      <p class="card-text">
+      <div class="card-text">
         Nuestro gerente:<br>
         <strong>Kanye West</strong><br>
         Agradecemos su preferencia. Nos esforzamos por ofrecerle siempre lo mejor.
-      </p>
+      </div>
     </div>
   </div>
   <br>
@@ -21,9 +21,9 @@
           <header>
             <h2>{{ usuario.nombre }}</h2>
           </header>
-          <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-          <p><strong>Celular:</strong> {{ usuario.celular }}</p>
-          <p><strong>Comentario:</strong> {{ usuario.comentario }}</p>
+          <p><i class="fas fa-envelope icon"></i> {{ usuario.correo }}</p>
+          <p><i class="fas fa-mobile-alt icon icon-phone"></i> {{ usuario.celular }}</p>
+          <p><i class="fas fa-comment icon"></i> {{ usuario.comentario }}</p>
           <button *ngIf="usuario.id !== undefined" (click)="editarUsuario(usuario.id!)" class="btn btn-edit">
             <i class="bi bi-pencil"></i>
           </button>
