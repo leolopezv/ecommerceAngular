@@ -8,23 +8,34 @@ import { Usuario } from '../interfaz/usuario';
 })
 export class RecursosService {
 
-  private apiUrl = 'http://localhost:3000/rest/usuarios';
+  private usuarioUrl = 'http://localhost:3000/rest/usuarios';
+  private tarjetaUrl = 'http://localhost:3000/rest/tarjetas';
 
   constructor(private http: HttpClient) { }
 
   agregarUsuario(usuario: Usuario) {
-    return this.http.post(`${this.apiUrl}/save`, usuario);
+    return this.http.post(`${this.usuarioUrl}/save`, usuario);
   }
-
   obtenerUsuarios() {
-    return this.http.get(`${this.apiUrl}/findAll/json`);
+    return this.http.get(`${this.usuarioUrl}/findAll/json`);
   }
-
   editarUsuario(usuario: Usuario) {
-    return this.http.put(`${this.apiUrl}/update/${usuario.id}`, usuario);
+    return this.http.put(`${this.usuarioUrl}/update/${usuario.id}`, usuario);
+  }
+  borrarUsuario(id: number) {
+    return this.http.delete(`${this.usuarioUrl}/delete/${id}`);
   }
 
-  borrarUsuario(id: number) {
-    return this.http.delete(`${this.apiUrl}/delete/${id}`);
+  agregarTarjeta(tarjeta: any) {
+    return this.http.post(`${this.tarjetaUrl}/save`, tarjeta);
+  }
+  obtenerTarjetas() {
+    return this.http.get(`${this.tarjetaUrl}/findAll/json`);
+  }
+  editarTarjeta(tarjeta: any) {
+    return this.http.put(`${this.tarjetaUrl}/update/${tarjeta.id}`, tarjeta);
+  }
+  borrarTarjeta(id: number) {
+    return this.http.delete(`${this.tarjetaUrl}/delete/${id}`);
   }
 }

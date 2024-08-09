@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecursosService } from '../../servicios/recursos.service';
-import { Usuario } from '../../interfaz/usuario';
+import { Tarjeta } from '../../interfaz/tarjeta';
 
 @Component({
   selector: 'app-blog',
@@ -14,55 +14,57 @@ import { Usuario } from '../../interfaz/usuario';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent {
-  title = 'Blog de usuarios';
-  usuarios: Usuario[] = [];
-  usuarioEditando: Usuario | null = null;
+  title = 'Mi perfil';
+  tarjetas: Tarjeta[] = [];
+  tarjetaEditando: Tarjeta | null = null;
 
   constructor(private recursosService: RecursosService) {
-    this.cargarUsuarios();
+    this.cargarTarjetas();
   }
 
-  cargarUsuarios() {
-    this.recursosService.obtenerUsuarios().subscribe(respuesta => {
-      this.usuarios = respuesta as Array<Usuario>;
+  cargarTarjetas() {
+    this.recursosService.obtenerTarjetas().subscribe(respuesta => {
+      this.tarjetas = respuesta as Array<Tarjeta>;
     });
   }
 
-  borrarUsuario(id: number) {
-    this.recursosService.borrarUsuario(id).subscribe(
+  borrarTarjeta(id: number) {
+    this.recursosService.borrarTarjeta(id).subscribe(
       (response) => {
-        console.log('Usuario borrado:', response);
-        this.usuarios = this.usuarios.filter(usuario => usuario.id !== id);
+        console.log('Tarjeta borrada:', response);
+        this.tarjetas = this.tarjetas.filter(tarjeta => tarjeta.id !== id);
       },
       (error) => {
-        console.error('Error al borrar usuario:', error);
+        console.error('Error al borrar tarjeta:', error);
       }
     );
   }
 
-  editarUsuario(id: number) {
-    const usuario = this.usuarios.find(u => u.id === id);
-    if (usuario) {
-      this.usuarioEditando = { ...usuario };
+  editarTarjeta(id: number) {
+    const tarjeta = this.tarjetas.find(t => t.id === id);
+    if (tarjeta) {
+      this.tarjetaEditando = { ...tarjeta };
     }
   }
 
-  guardarUsuarioEditado() {
-    if (this.usuarioEditando) {
-      this.recursosService.editarUsuario(this.usuarioEditando).subscribe(
+  guardarTarjetaEditada() {
+    if (this.tarjetaEditando) {
+      this.recursosService.editarTarjeta(this.tarjetaEditando).subscribe(
         (response) => {
-          console.log('Usuario editado:', response);
-          this.cargarUsuarios();
-          this.usuarioEditando = null;
+          console.log('Tarjeta editada:', response);
+          this.cargarTarjetas();
+          this.tarjetaEditando = null;
         },
         (error) => {
-          console.error('Error al editar usuario:', error);
+          console.error('Error al editar tarjeta:', error);
         }
       );
     }
   }
 
   cancelarEdicion() {
-    this.usuarioEditando = null;
+    this.tarjetaEditando = null;
   }
+
+
 }

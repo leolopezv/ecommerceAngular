@@ -1,67 +1,84 @@
 <section class="contenedor-seccion">
-  <div class="fondo-seccion"></div>
-  <div class="header-seccion">
+    <div class="fondo-seccion"></div>
+    <div class="header-seccion">
       <div class="col">
-          <strong><span class="link-blanco">Inicio</span> / Contacto</strong>
+        <strong><span class="link-blanco">Inicio</span> / Contacto</strong>
       </div>
       <div class="centro">
-          <h2>{{title}}</h2>
+        <h2>{{title}}</h2>
       </div>
       <div class="col busqueda">
-          <strong> </strong>
-      </div>
-  </div>
-
-  <section class="contacto">
-    <div class="fila">
-      <div class="col">
-        <h2>¡Contáctanos!</h2>
-        <form (ngSubmit)="onSubmit()" #usuarioForm="ngForm">
-          <input type="text" placeholder="Nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
-          <input type="text" placeholder="Correo" [(ngModel)]="usuario.correo" name="correo" required>
-          <input type="text" placeholder="Celular" [(ngModel)]="usuario.celular" name="celular" required>
-          <textarea placeholder="Comentario" [(ngModel)]="usuario.comentario" name="mensaje" required></textarea>
-          <button type="submit" class="btn-contacto" [disabled]="!usuarioForm.form.valid" [class.success]="success">{{buttonText}}</button>
-        </form>
-      </div>
-
-      <div class="col">
-        <div class="contenedor-img">
-          <img src="https://seeklogo.com/images/N/new-era-logo-B4901774AA-seeklogo.com.png" alt="">
-        </div>
+        <strong> </strong>
       </div>
     </div>
-  </section>
 
-  <section class="informacion-contacto">
-    <div class="fila">
-        <div class="col centrado">
-            <h3>¿Por qué contactarnos?</h3>
-            <p>En NoCapStore, valoramos la comunicación directa con nuestros clientes. Al contactarnos, puedes:</p>
-            <ul class="lista-contacto">
-                <li>Recibir asesoramiento personalizado sobre nuestros productos.</li>
-                <li>Resolver dudas y consultas específicas sobre tu pedido.</li>
-                <li>Obtener información detallada sobre nuestras políticas de envío y devoluciones.</li>
-            </ul>
+    <section class="contacto">
+      <div class="fila">
+        <div class="col">
+          <h2>¡Contáctanos!</h2>
+          <form (ngSubmit)="onSubmit()" #usuarioForm="ngForm">
+            <input type="text" placeholder="Nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
+            <input type="text" placeholder="Correo" [(ngModel)]="usuario.correo" name="correo" required>
+            <input type="text" placeholder="Celular" [(ngModel)]="usuario.celular" name="celular" required>
+            <textarea placeholder="Comentario" [(ngModel)]="usuario.comentario" name="mensaje" required></textarea>
+            <button type="submit" class="btn-contacto" [disabled]="!usuarioForm.form.valid" [class.success]="success">{{buttonText}}</button>
+          </form>
         </div>
-        <div class="col centrado">
-            <h3>Horario de atención</h3>
-            <p>Estamos disponibles para ayudarte en los siguientes horarios:</p>
-            <ul class="lista-contacto">
-                <li>Lunes a Viernes: 9:00 AM - 6:00 PM</li>
-                <li>Sábados: 10:00 AM - 4:00 PM</li>
-                <li>Domingos y Festivos: Cerrado</li>
-            </ul>
+
+        <div class="col">
+          <div class="contenedor-img">
+            <img src="https://seeklogo.com/images/N/new-era-logo-B4901774AA-seeklogo.com.png" alt="">
+          </div>
         </div>
-        <div class="col centrado">
-            <h3>Nuestros canales de contacto</h3>
-            <p>Puedes comunicarte con nosotros a través de los siguientes medios:</p>
-            <ul class="lista-contacto">
-                <li>Correo Electrónico: contacto.ncapstore.com</li>
-                <li>Teléfono: +123 456 7890</li>
-                <li>Redes Sociales: Síguenos en Facebook, Instagram y Twitter</li>
-            </ul>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <h2>{{ title }}</h2>
+      <br>
+      <br>
+      <div class="blog">
+        <div class="fila" *ngFor="let usuario of usuarios">
+          <div class="col">
+            <div class="contenido">
+              <header>
+                <h2>{{ usuario.nombre }}</h2>
+              </header>
+              <p><i class="fas fa-envelope icon"></i> {{ usuario.correo }}</p>
+              <p><i class="fas fa-mobile-alt icon icon-phone"></i> {{ usuario.celular }}</p>
+              <p><i class="fas fa-comment icon"></i> {{ usuario.comentario }}</p>
+              <button *ngIf="usuario.id !== undefined" (click)="editarUsuario(usuario.id!)" class="btn btn-edit">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button *ngIf="usuario.id !== undefined" (click)="borrarUsuario(usuario.id!)" class="btn btn-danger">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
+        <div *ngIf="usuarioEditando">
+          <h3>Editar Usuario</h3>
+          <form (ngSubmit)="guardarUsuarioEditado()">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" [(ngModel)]="usuarioEditando.nombre" name="nombre" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo:</label>
+              <input type="email" id="correo" [(ngModel)]="usuarioEditando.correo" name="correo" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="celular">Celular:</label>
+              <input type="text" id="celular" [(ngModel)]="usuarioEditando.celular" name="celular" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="comentario">Comentario:</label>
+              <input type="text" id="comentario" [(ngModel)]="usuarioEditando.comentario" name="comentario" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </section>
-</section>

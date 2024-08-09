@@ -15,18 +15,29 @@ import { Usuario } from '../../interfaz/usuario';
 })
 export class ContactoComponent {
 
-  title = 'Envíanos tus comentarios';
-  usuario: Usuario = {
+  title = 'Blog de comentarios';
+  usuarios: Usuario[] = [];
+  usuarioEditando: Usuario | null = null;
+  usuario = {
     nombre: '',
     correo: '',
     celular: '',
     comentario: ''
   };
+
   successMessage: string = '';
   success = false;
-  buttonText = 'Enviar Registro';
+  buttonText = 'Enviar Comentario';
 
-  constructor(private recursosService: RecursosService) {}
+  constructor(private recursosService: RecursosService) {
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
+    this.recursosService.obtenerUsuarios().subscribe(respuesta => {
+      this.usuarios = respuesta as Array<Usuario>;
+    });
+  }
 
   agregarUsuario(usuario: Usuario) {
     this.recursosService.agregarUsuario(usuario).subscribe(
@@ -38,7 +49,7 @@ export class ContactoComponent {
         setTimeout(() => {
           this.successMessage = '';
           this.success = false;
-          this.buttonText = 'Enviar Registro';
+          this.buttonText = 'Enviar Comentario';
         }, 3000);
       },
       (error) => {
@@ -56,4 +67,44 @@ export class ContactoComponent {
       comentario: ''
     };
   }
+
+  borrarUsuario(id: number) {
+    this.recursosService.borrarUsuario(id).subscribe(
+      (response) => {
+        console.log('Usuario borrado:', response);
+        this.usuarios = this.usuarios.filter(usuario => usuario.id !== id);
+      },
+      (error) => {
+        console.error('Error al borrar usuario:', error);
+      }
+    );
+  }
+
+  editarUsuario(id: number) {
+    const usuario = this.usuarios.find(u => u.id === id);
+    if (usuario) {
+      this.usuarioEditando = { ...usuario };
+    }
+  }
+
+  guardarUsuarioEditado() {
+    if (this.usuarioEditando) {
+      this.recursosService.editarUsuario(this.usuarioEditando).subscribe(
+        (response) => {
+          console.log('Usuario editado:', response);
+          this.cargarUsuarios();
+          this.usuarioEditando = null;
+        },
+        (error) => {
+          console.error('Error al editar usuario:', error);
+        }
+      );
+    }
+  }
+
+  cancelarEdicion() {
+    this.usuarioEditando = null;
+  }
+
+  
 }
