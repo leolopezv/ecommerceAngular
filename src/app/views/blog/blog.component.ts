@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecursosService } from '../../servicios/recursos.service';
 import { Tarjeta } from '../../interfaz/tarjeta';
+import { Domicilio } from '../../interfaz/domicilio';
 
 @Component({
   selector: 'app-blog',
@@ -15,16 +16,27 @@ import { Tarjeta } from '../../interfaz/tarjeta';
 })
 export class BlogComponent {
   title = 'Mi perfil';
+  currentForm: 'tarjeta' | 'domicilio' | null = null;
   tarjetas: Tarjeta[] = [];
-  tarjetaEditando: Tarjeta | null = null;
+  tarjetaEditando: any = {};
+
+  domicilios: Domicilio[] = [];
+  domicilioEditando: any = {};
 
   constructor(private recursosService: RecursosService) {
     this.cargarTarjetas();
+    this.cargarDomicilios();
   }
 
   cargarTarjetas() {
     this.recursosService.obtenerTarjetas().subscribe(respuesta => {
       this.tarjetas = respuesta as Array<Tarjeta>;
+    });
+  }
+
+  cargarDomicilios() {
+    this.recursosService.obtenerDomicilios().subscribe(respuesta => {
+      this.domicilios = respuesta as Array<Domicilio>;
     });
   }
 
@@ -40,11 +52,32 @@ export class BlogComponent {
     );
   }
 
+  borrarDomicilio(id: number) {
+    this.recursosService.borrarDomicilio(id).subscribe(
+      (response) => {
+        console.log('Domicilio borrado:', response);
+        this.domicilios = this.domicilios.filter(domicilio => domicilio.id !== id);
+      },
+      (error) => {
+        console.error('Error al borrar domicilio:', error);
+      }
+    );
+  }
+
   editarTarjeta(id: number) {
     const tarjeta = this.tarjetas.find(t => t.id === id);
     if (tarjeta) {
       this.tarjetaEditando = { ...tarjeta };
     }
+    this.currentForm = 'tarjeta';
+  }
+
+  editarDomicilio(id: number) {
+    const domicilio = this.domicilios.find(d => d.id === id);
+    if (domicilio) {
+      this.domicilioEditando = { ...domicilio };
+    }
+    this.currentForm = 'domicilio';
   }
 
   guardarTarjetaEditada() {
@@ -60,10 +93,31 @@ export class BlogComponent {
         }
       );
     }
+    this.currentForm = null;
   }
 
-  cancelarEdicion() {
-    this.tarjetaEditando = null;
+  guardarDomicilioEditado() {
+    if (this.domicilioEditando) {
+      this.recursosService.editarDomicilio(this.domicilioEditando).subscribe(
+        (response) => {
+          console.log('Domicilio editado:', response);
+          this.cargarDomicilios();
+          this.domicilioEditando = null;
+        },
+        (error) => {
+          console.error('Error al editar domicilio:', error);
+        }
+      );
+    }
+    this.currentForm = null;
+  }
+
+  cancelarEdicionTarjeta() {
+    this.currentForm = null;
+  }
+
+  cancelarEdicionDomicilio() {
+    this.currentForm = null;
   }
 
 
