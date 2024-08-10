@@ -1,6 +1,9 @@
 <section id="servicios">
+  <!-- Section Title -->
   <h2>{{ title }}</h2>
   <br>
+
+  <!-- Welcome Card -->
   <div class="card" style="width: 18rem; margin: 0 auto;">
     <img src="https://wallpapers.com/images/hd/kanye-west-in-hat-png-usx50-tcqrmq2s5nh3zcla.jpg" class="card-img-top" alt="Mejor Cliente">
     <div class="card-body">
@@ -12,6 +15,8 @@
     </div>
   </div>
   <br>
+
+  <!-- Card Information Section -->
   <h3>Información de Tarjetas Bancarias</h3>
   <div class="blog">
     <div class="fila" *ngFor="let tarjeta of tarjetas">
@@ -23,7 +28,6 @@
           <p><i class="fas fa-user icon"></i> {{ tarjeta.titular }}</p>
           <p><i class="fas fa-credit-card icon"></i> {{ tarjeta.numero }}</p>
           <p><i class="fas fa-calendar-alt icon"></i> {{ tarjeta.fecha | date }}</p>
-          <p><i class="fas fa-key icon"></i> {{ tarjeta.codigo }}</p>
           <button *ngIf="tarjeta.id !== undefined" (click)="editarTarjeta(tarjeta.id!)" class="btn btn-edit">
             <i class="bi bi-pencil"></i>
           </button>
@@ -33,32 +37,82 @@
         </div>
       </div>
     </div>
-    <div *ngIf="tarjetaEditando">
-      <h3>Editar Tarjeta</h3>
-      <form (ngSubmit)="guardarTarjetaEditada()">
-        <div class="form-group">
-          <label for="banco">Banco:</label>
-          <input type="text" id="banco" [(ngModel)]="tarjetaEditando.banco" name="banco" class="form-control" required>
+  </div>
+
+  <!-- Informacion de Domicilios Registrados -->
+  <h3>Información de Domicilios Registrados</h3>
+  <div class="blog">
+    <div class="fila" *ngFor="let domicilio of domicilios">
+      <div class="col">
+        <div class="contenido">
+          <header>
+            <h2><i class="fas fa-home icon"></i>{{ domicilio.direccion }}</h2>
+          </header>
+          <p><i class="fas fa-city icon"></i> {{ domicilio.ciudad }}</p>
+          <p><i class="fas fa-map-marker-alt icon"></i> {{ domicilio.provincia }}</p>
+          <p><i class="fas fa-flag icon"></i> {{ domicilio.pais }}</p>
+          <button *ngIf="domicilio.id !== undefined" (click)="editarDomicilio(domicilio.id!)" class="btn btn-edit">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button *ngIf="domicilio.id !== undefined" (click)="borrarDomicilio(domicilio.id!)" class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="numero">Número:</label>
-          <input type="text" id="numero" [(ngModel)]="tarjetaEditando.numero" name="numero" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="titular">Titular:</label>
-          <input type="text" id="titular" [(ngModel)]="tarjetaEditando.titular" name="titular" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="fecha">Fecha:</label>
-          <input type="date" id="fecha" [(ngModel)]="tarjetaEditando.fecha" name="fecha" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="codigo">Código:</label>
-          <input type="text" id="codigo" [(ngModel)]="tarjetaEditando.codigo" name="codigo" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <button type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
-      </form>
+      </div>
     </div>
   </div>
+
+  <!-- Formulario Editar Tarjeta -->
+<div *ngIf="currentForm === 'tarjeta'" class="edit-card-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h3 style="text-align: center;">Editar Tarjeta</h3>
+  <form (ngSubmit)="guardarTarjetaEditada()">
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="banco" style="display: block; text-align: center;">Banco:</label>
+      <input type="text" id="banco" [(ngModel)]="tarjetaEditando.banco" name="banco" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="numero" style="display: block; text-align: center;">Número:</label>
+      <input type="text" id="numero" [(ngModel)]="tarjetaEditando.numero" name="numero" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="titular" style="display: block; text-align: center;">Titular:</label>
+      <input type="text" id="titular" [(ngModel)]="tarjetaEditando.titular" name="titular" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="fecha" style="display: block; text-align: center;">Fecha:</label>
+      <input type="date" id="fecha" [(ngModel)]="tarjetaEditando.fecha" name="fecha" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-success" style="margin-right: 10px; padding: 10px 20px; border-radius: 5px;">Guardar</button>
+      <button type="button" (click)="cancelarEdicionTarjeta()" class="btn btn-secondary" style="padding: 10px 20px; border-radius: 5px;">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<!-- Formulario Editar Domicilio -->
+<div *ngIf="currentForm === 'domicilio'" class="edit-domicilio-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h3 style="text-align: center;">Editar Domicilio</h3>
+  <form (ngSubmit)="guardarDomicilioEditado()">
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="direccion" style="display: block; text-align: center;">Dirección:</label>
+      <input type="text" id="direccion" [(ngModel)]="domicilioEditando.direccion" name="direccion" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="ciudad" style="display: block; text-align: center;">Ciudad:</label>
+      <input type="text" id="ciudad" [(ngModel)]="domicilioEditando.ciudad" name="ciudad" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="provincia" style="display: block; text-align: center;">Provincia:</label>
+      <input type="text" id="provincia" [(ngModel)]="domicilioEditando.provincia" name="provincia" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="pais" style="display: block; text-align: center;">País:</label>
+      <input type="text" id="pais" [(ngModel)]="domicilioEditando.pais" name="pais" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-success" style="margin-right: 10px; padding: 10px 20px; border-radius: 5px;">Guardar</button>
+      <button type="button" (click)="cancelarEdicionDomicilio()" class="btn btn-secondary" style="padding: 10px 20px; border-radius: 5px;">Cancelar</button>
+    </div>
+  </form>
+</div>
 </section>

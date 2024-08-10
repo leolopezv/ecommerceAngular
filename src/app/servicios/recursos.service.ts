@@ -10,6 +10,7 @@ export class RecursosService {
 
   private usuarioUrl = 'http://localhost:3000/rest/usuarios';
   private tarjetaUrl = 'http://localhost:3000/rest/tarjetas';
+  private domicilioUrl = 'http://localhost:3000/rest/domicilios';
 
   constructor(private http: HttpClient) { }
 
@@ -37,5 +38,21 @@ export class RecursosService {
   }
   borrarTarjeta(id: number) {
     return this.http.delete(`${this.tarjetaUrl}/delete/${id}`);
+  }
+
+  agregarDomicilio(domicilio: any) {
+    return this.http.post(`${this.domicilioUrl}/save`, domicilio);
+  }
+
+  obtenerDomicilios() {
+    return this.http.get(`${this.domicilioUrl}/findAll/json`);
+  }
+
+  editarDomicilio(domicilio: any) {
+    return this.http.put(`${this.domicilioUrl}/update/${domicilio.id}`, domicilio);
+  }
+
+  borrarDomicilio(id: number) {
+    return this.http.delete(`${this.domicilioUrl}/delete/${id}`);
   }
 }
