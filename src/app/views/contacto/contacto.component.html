@@ -47,12 +47,6 @@
               <p><i class="fas fa-envelope icon"></i> {{ usuario.correo }}</p>
               <p><i class="fas fa-mobile-alt icon icon-phone"></i> {{ usuario.celular }}</p>
               <p><i class="fas fa-comment icon"></i> {{ usuario.comentario }}</p>
-              <button *ngIf="usuario.id !== undefined" (click)="editarUsuario(usuario.id!)" class="btn btn-edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button *ngIf="usuario.id !== undefined" (click)="borrarUsuario(usuario.id!)" class="btn btn-danger">
-                <i class="bi bi-trash"></i>
-              </button>
             </div>
           </div>
         </div>
