@@ -1,116 +1,76 @@
 <section class="contenedor-seccion">
-  <div class="fondo-seccion"></div>
+    <div class="fondo-seccion"></div>
+  
+    <section id="inicio" class="inicio">
+        <div class="col">
+            <h2 class="titulo-inicio">El Universo de las Gorras <br>
+                NoCapStore</h2>
+            <div class="buscador">
+                <input type="text" placeholder="Encuentra la gorra ideal">
+                <span class="btn-buscar"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+  
+        </div>
+        <div class="col derecha">
+            <div class="contenedor-img">
+                <img src="https://seeklogo.com/images/N/new-era-logo-B4901774AA-seeklogo.com.png" alt="">
+            </div>
+        </div>
+    </section>  
+<section class="contenedor-seccion">
+    <div class="fondo-seccion"></div>
+    <div class="header-seccion">
+        <div class="col">
+            <strong><span class="link-blanco">Inicio</span> / Tienda</strong>
+        </div>
+        <div class="centro">
+            <h2>{{title}}</h2>
+        </div>
+        <div class="col busqueda">
+            <strong>Resultados (1-6)</strong>
+            <select name="" id="">
+                <option value="">Todos los productos</option>
+                <option value="">Por precio</option>
+                <option value="">Por modelo</option>
+            </select>
+        </div>
+    </div>
 
-  <section id="inicio" class="inicio">
-      <div class="col">
-          <h2 class="titulo-inicio">El Universo de las Gorras <br>
-              NoCapStore</h2>
-          <div class="buscador">
-              <input type="text" placeholder="Encuentra la gorra ideal">
-              <span class="btn-buscar"><i class="fa-solid fa-magnifying-glass"></i></span>
-          </div>
+    <section id="productos" class="productos">
+        <!-- Primera fila de imágenes -->
+        <div class="fila">
+            <div class="col fondo-dots" *ngFor="let foto of fotos.slice(0, 3)">
+                <header>
+                    <span class="like"><i class="fa-solid fa-heart"></i></span>
+                    <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
+                </header>
+  
+                <a href="#">
+                    <div class="contenido">
+                        <img [src]="foto.imagen" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
+                        <h2>{{foto.descripcion}}</h2>
+                        <h2>{{foto.precio}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
 
-      </div>
-      <div class="col derecha">
-          <div class="contenedor-img">
-              <img src="https://seeklogo.com/images/N/new-era-logo-B4901774AA-seeklogo.com.png" alt="">
-          </div>
-      </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section id="productos" class="productos">
-      <div class="fila">
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-              <a href="producto1.html">
-                  <div class="contenido">
-                      <img src="https://neweraec.vtexassets.com/arquivos/ids/179593/60503553_5.png?v=638521632997600000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Floral Fill Collection 9FIFTY Ajustable New Era</h2>
-                      <h2>$20.000</h2>
-                  </div>
-              </a>
-
-          </div>
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-
-              <a href="producto2.html">
-                  <div class="contenido">
-                      <img src="https://neweraec.vtexassets.com/arquivos/ids/179887/60565644_1.jpg?v=638528098248600000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Vivid Floral Collection 9FIFTY Ajustable New Era</h2>
-                      <h2>$35.000</h2>
-                  </div>
-              </a>
-          </div>
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-
-              <a href="#">
-                  <div class="contenido">
-
-                    <img src="https://neweraec.vtexassets.com/arquivos/ids/173238/70360653_1.png?v=638447308932470000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Basic Collection 59FIFTY Cerrada New Era</h2>"
-                      <h2>$35.000</h2>
-                  </div>
-              </a>
-          </div>
-      </div>
-      <div class="fila">
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-
-              <a href="#">
-                  <div class="contenido">
-
-                      <img src="https://neweraec.vtexassets.com/arquivos/ids/179848/60503502_5.jpg?v=638528097984570000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Floral Fill Collection 9FIFTY Ajustable New Era</h2>
-                      <h2>$64.000</h2>
-                  </div>
-              </a>
-          </div>
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-
-              <a href="#">
-                  <div class="contenido">
-
-                      <img src="https://neweraec.vtexassets.com/arquivos/ids/179821/60503486_1.jpg?v=638528097799600000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Acperf Collection 59FIFTY Lp Cerrada New Era</h2>
-                      <h2>$17.999</h2>
-                  </div>
-              </a>
-          </div>
-          <div class="col fondo-dots">
-              <header>
-                  <span class="like"><i class="fa-solid fa-heart"></i></span>
-                  <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
-              </header>
-
-              <a href="#">
-                  <div class="contenido">
-
-                      <img src="https://neweraec.vtexassets.com/arquivos/ids/179854/60503505_5.jpg?v=638528098027200000" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
-                      <h2>Gorra Clubhouse 9Forty Ajustable New Era</h2>
-                      <h2>$24.000</h2>
-                  </div>
-              </a>
-          </div>
-      </div>
-  </section>
+        <!-- Segunda fila de imágenes -->
+        <div class="fila">
+            <div class="col fondo-dots" *ngFor="let foto of fotos.slice(3, 6)">
+                <header>
+                    <span class="like"><i class="fa-solid fa-heart"></i></span>
+                    <span class="cart"><i class="fa-solid fa-bag-shopping"></i></span>
+                </header>
+  
+                <a href="#">
+                    <div class="contenido">
+                        <img [src]="foto.imagen" alt="" style="width: 200px; height: 230px; margin-right: 15px;">
+                        <h2>{{foto.descripcion}}</h2>
+                        <h2>{{foto.precio}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 </section>

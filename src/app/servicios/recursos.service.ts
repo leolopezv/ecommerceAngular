@@ -2,6 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../interfaz/usuario';
+import { Foto } from '../interfaz/foto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,8 @@ export class RecursosService {
   private usuarioUrl = 'http://localhost:3000/rest/usuarios';
   private tarjetaUrl = 'http://localhost:3000/rest/tarjetas';
   private domicilioUrl = 'http://localhost:3000/rest/domicilios';
+  private fotoUrl = 'http://localhost:3000/rest/fotos';
+
 
   constructor(private http: HttpClient) { }
 
@@ -54,5 +58,9 @@ export class RecursosService {
 
   borrarDomicilio(id: number) {
     return this.http.delete(`${this.domicilioUrl}/delete/${id}`);
+  }
+
+  obtenerFotos() {
+    return this.http.get(`${this.fotoUrl}/findAll/json`);
   }
 }

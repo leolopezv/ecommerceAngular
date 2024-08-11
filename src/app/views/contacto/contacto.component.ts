@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { RecursosService } from '../../servicios/recursos.service';
 import { Usuario } from '../../interfaz/usuario';
