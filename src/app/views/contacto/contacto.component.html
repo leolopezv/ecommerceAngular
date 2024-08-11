@@ -37,25 +37,18 @@
       <h2>{{ title }}</h2>
       <br>
       <br>
-      <div class="blog">
-        <div class="fila" *ngFor="let usuario of usuarios">
-          <div class="col">
-            <div class="contenido">
-              <header>
-                <h2>{{ usuario.nombre }}</h2>
-              </header>
-              <p><i class="fas fa-envelope icon"></i> {{ usuario.correo }}</p>
-              <p><i class="fas fa-mobile-alt icon icon-phone"></i> {{ usuario.celular }}</p>
-              <p><i class="fas fa-comment icon"></i> {{ usuario.comentario }}</p>
-              <button *ngIf="usuario.id !== undefined" (click)="editarUsuario(usuario.id!)" class="btn btn-edit">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button *ngIf="usuario.id !== undefined" (click)="borrarUsuario(usuario.id!)" class="btn btn-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
+      <div class="forum-container">
+        <div class="forum-post" *ngFor="let usuario of usuarios">
+          <div class="forum-header">
+            <h3>{{ usuario.nombre }}</h3>
+            <span class="post-date">{{ usuario.correo }}</span>
+          </div>
+          <div class="forum-content">
+            <p>{{ usuario.comentario }}</p>
           </div>
         </div>
+      </div>
+
         <div *ngIf="usuarioEditando">
           <h3>Editar Usuario</h3>
           <form (ngSubmit)="guardarUsuarioEditado()">
@@ -79,6 +72,5 @@
             <button type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
           </form>
         </div>
-      </div>
     </section>
   </section>

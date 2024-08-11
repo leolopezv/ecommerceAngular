@@ -51,6 +51,7 @@ export class ContactoComponent {
           this.success = false;
           this.buttonText = 'Enviar Comentario';
         }, 3000);
+        window.location.reload();
       },
       (error) => {
         console.error('Error al agregar usuario:', error);
@@ -106,5 +107,5 @@ export class ContactoComponent {
     this.usuarioEditando = null;
   }
 
-  
+
 }
