@@ -13,6 +13,12 @@ import { Foto } from '../../interfaz/foto';
   styleUrl: './tienda.component.css'
 })
 export class TiendaComponent {
- 
+  title = 'Tienda';
+  fotos: Foto[] = [];
 
+  constructor(private recursosService: RecursosService) {
+    recursosService.obtenerFotos().subscribe(respuesta => {
+      this.fotos = respuesta as Array<Foto>;
+    });
+  }
 }
