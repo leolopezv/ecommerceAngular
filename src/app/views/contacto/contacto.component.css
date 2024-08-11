@@ -248,3 +248,36 @@ p {
   align-items: center;
   margin-bottom: 15px;
 }
+
+.forum-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.forum-post {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.forum-header h3 {
+  margin: 0;
+}
+
+.post-date {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.forum-content p {
+  margin: 0;
+}
