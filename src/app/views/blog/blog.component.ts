@@ -19,12 +19,10 @@ export class BlogComponent {
   currentForm: 'agregarTarjeta'|'tarjeta' | 'domicilio' | null = null;
   showForm: boolean = false;
   tarjetas: Tarjeta[] = [];
-  nuevaTarjeta: Tarjeta = {
+  tarjeta: Tarjeta = {
     banco: '',
     titular: '',
     numero: '',
-    codigo: '777',
-    usuario_id: 1,
     fecha: new Date()
   };
   tarjetaEditando: any = {};
@@ -77,19 +75,18 @@ export class BlogComponent {
     this.currentForm = 'agregarTarjeta';
   }
 
-  agregarTarjeta(): void {
-    const nuevaId = this.tarjetas.length > 0 ? Math.max(...this.tarjetas.map(t => t.id || 0)) + 1 : 1;
-    const tarjetaConId = { ...this.nuevaTarjeta, id: nuevaId };
-    this.tarjetas.push(tarjetaConId);
-    this.nuevaTarjeta = {
-      banco: '',
-      titular: '',
-      numero: '',
-      codigo: '777',
-      usuario_id: 1,
-      fecha: new Date()
-    };
-    this.currentForm = null;
+  agregarTarjeta(tarjeta: Tarjeta) {
+    this.recursosService.agregarTarjeta(tarjeta).subscribe(
+      (response) => {
+        console.log('Usuario agregado:', response);
+        setTimeout(() => {
+          window.location.reload(); // Refresh the page
+        }, 3000); // Adjust the timeout duration as needed
+      },
+      (error) => {
+        console.error('Error al agregar usuario:', error);
+      }
+    );
   }
 
   editarTarjeta(id: number) {

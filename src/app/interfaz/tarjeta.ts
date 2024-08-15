@@ -4,6 +4,4 @@ export interface Tarjeta {
   numero: string;
   titular: string;
   fecha: Date;
-  codigo: string;
-  usuario_id: number;
 }
