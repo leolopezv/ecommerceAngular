@@ -16,5 +16,4 @@ import { CarritoComponent } from '../../views/carrito/carrito.component';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-
 }
