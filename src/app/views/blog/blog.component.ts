@@ -16,8 +16,17 @@ import { Domicilio } from '../../interfaz/domicilio';
 })
 export class BlogComponent {
   title = 'Mi perfil';
-  currentForm: 'tarjeta' | 'domicilio' | null = null;
+  currentForm: 'agregarTarjeta'|'tarjeta' | 'domicilio' | null = null;
+  showForm: boolean = false;
   tarjetas: Tarjeta[] = [];
+  nuevaTarjeta: Tarjeta = {
+    banco: '',
+    titular: '',
+    numero: '',
+    codigo: '777',
+    usuario_id: 1,
+    fecha: new Date()
+  };
   tarjetaEditando: any = {};
 
   domicilios: Domicilio[] = [];
@@ -62,6 +71,25 @@ export class BlogComponent {
         console.error('Error al borrar domicilio:', error);
       }
     );
+  }
+
+  showAgregarTarjeta() {
+    this.currentForm = 'agregarTarjeta';
+  }
+
+  agregarTarjeta(): void {
+    const nuevaId = this.tarjetas.length > 0 ? Math.max(...this.tarjetas.map(t => t.id || 0)) + 1 : 1;
+    const tarjetaConId = { ...this.nuevaTarjeta, id: nuevaId };
+    this.tarjetas.push(tarjetaConId);
+    this.nuevaTarjeta = {
+      banco: '',
+      titular: '',
+      numero: '',
+      codigo: '777',
+      usuario_id: 1,
+      fecha: new Date()
+    };
+    this.currentForm = null;
   }
 
   editarTarjeta(id: number) {
