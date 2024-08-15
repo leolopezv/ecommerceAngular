@@ -35,16 +35,19 @@
 
     <section id="servicios">
       <h2>{{ title }}</h2>
-      <br>
-      <br>
       <div class="forum-container">
-        <div class="forum-post" *ngFor="let usuario of usuarios">
-          <div class="forum-header">
-            <h3>{{ usuario.nombre }}</h3>
-            <span class="post-date">{{ usuario.correo }}</span>
-          </div>
-          <div class="forum-content">
-            <p>{{ usuario.comentario }}</p>
+        <div class="forum-post" *ngFor="let usuario of usuarios; let i = index">
+          <div *ngIf="i !== 0">
+            <div class="forum-header">
+              <h3>{{ usuario.nombre }}</h3>
+              <span class="post-date">{{ usuario.correo }}</span>
+            </div>
+            <div class="forum-content">
+              <p>{{ usuario.comentario }}</p>
+              <button *ngIf="usuario.nombre === 'Kanye West'" (click)="borrarUsuario(usuario.id!)" class="delete-icon">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

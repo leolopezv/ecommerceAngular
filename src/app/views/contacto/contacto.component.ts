@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecursosService } from '../../servicios/recursos.service';
 import { Usuario } from '../../interfaz/usuario';
@@ -19,7 +19,7 @@ export class ContactoComponent {
   usuarios: Usuario[] = [];
   usuarioEditando: Usuario | null = null;
   usuario = {
-    nombre: '',
+    nombre: 'Kanye West',
     correo: '',
     celular: '',
     comentario: ''
@@ -50,8 +50,8 @@ export class ContactoComponent {
           this.successMessage = '';
           this.success = false;
           this.buttonText = 'Enviar Comentario';
-        }, 3000);
-        window.location.reload();
+          window.location.reload(); // Refresh the page
+        }, 3000); // Adjust the timeout duration as needed
       },
       (error) => {
         console.error('Error al agregar usuario:', error);
@@ -61,8 +61,9 @@ export class ContactoComponent {
 
   onSubmit() {
     this.agregarUsuario(this.usuario);
-    this.usuario = {
-      nombre: '',
+
+   this.usuario = {
+      nombre: 'Kanye West',
       correo: '',
       celular: '',
       comentario: ''
