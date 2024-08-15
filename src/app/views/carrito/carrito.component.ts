@@ -61,22 +61,23 @@ export class CarritoComponent {  // Cambiado de 'BlogComponent' a 'CarritoCompon
     });
   }
 
-  calcularTotalCarrito(): number {
-    return this.carritos.reduce((total, carrito) => {
-      return total + carrito.cantidad * carrito.foto.precio;
-    }, 0);
-  }
+    calcularTotalCompra() {
+      this.totalCompra = this.carritos.reduce((total, carrito) => {
+        return total + (carrito.cantidad * carrito.foto.precio);
+      }, 0);
+    }
+
 
 
   incrementarCantidad(carrito: Carrito) {
     carrito.cantidad++;
-    this.calcularTotalCarrito();
+    this.calcularTotalCompra();
   }
 
   disminuirCantidad(carrito: Carrito) {
     if (carrito.cantidad > 1) {
       carrito.cantidad--;
-      this.calcularTotalCarrito();
+      this.calcularTotalCompra();
     }
   }
 

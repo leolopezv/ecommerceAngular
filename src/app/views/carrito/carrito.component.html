@@ -44,8 +44,8 @@
             <span>{{ carrito.foto.talla }}</span>
           </div>
           <div class="col color" [ngClass]="carrito.foto.color">
-            <span> </span>
-          </div>
+            <span>{{ carrito.foto.color }}</span>
+          </div>
           <div class="col cantidad">
             <button (click)="incrementarCantidad(carrito)"> + </button>
             <span class="total-cantidad">{{ carrito.cantidad }}</span>
