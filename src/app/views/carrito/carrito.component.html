@@ -34,58 +34,75 @@
                   <strong>Precio</strong>
               </div>
           </div>
-          <div class="fila">
+          <div class="productos-carrito">
+            <div class="fila" *ngFor="let carrito of carritos">
               <div class="col descripcion">
-                <img src="https://www.redkap.com/dw/image/v2/BDCD_PRD/on/demandware.static/-/Sites-redkap-master-catalog/default/dwaf3ea15b/HB20/PS_RK_HB20BK_F.png?sw=800&sh=800" alt="logo" style="width: 50px; height: 50px; margin-right: 25px;">
-                <span>Gorra Adidas Edición Limitada</span>
+                <img [src]="carrito.foto.url" alt="logo" style="width: 50px; height: 50px; margin-right: 25px;">
+                <span>{{ carrito.foto.descripcion }}</span>
               </div>
               <div class="col talle">
-                  <span>42</span>
+                <span>{{ carrito.foto.talle }}</span>
               </div>
-              <div class="col color c1">
-                  <span> </span>
-              </div>
-              <div class="col cantidad">
-                  <button> + </button>
-                  <span class="total-cantidad">1</span>
-                  <button> - </button>
-              </div>
-              <div class="col eliminar">
-                  <span> <i class="fa-solid fa-xmark"></i> </span>
-              </div>
-              <div class="col precio">
-                  <span> $ 25,00</span>
-              </div>
-          </div>
-          <div class="fila">
-              <div class="col descripcion">
-                <img src="https://www.redkap.com/dw/image/v2/BDCD_PRD/on/demandware.static/-/Sites-redkap-master-catalog/default/dwaf3ea15b/HB20/PS_RK_HB20BK_F.png?sw=800&sh=800" alt="logo" style="width: 50px; height: 50px; margin-right: 25px;">
-                <span>Gorra de Argentina firmada por Messi</span>
-              </div>
-              <div class="col talle">
-                  <span>40</span>
-              </div>
-              <div class="col color c2">
-                  <span> </span>
+              <div class="col color" [ngClass]="carrito.foto.colorClass">
+                <span> </span>
               </div>
               <div class="col cantidad">
-                  <button> + </button>
-                  <span class="total-cantidad">1</span>
-                  <button> - </button>
+                <button (click)="incrementarCantidad(carrito)"> + </button>
+                <span class="total-cantidad">{{ carrito.cantidad }}</span>
+                <button (click)="disminuirCantidad(carrito)"> - </button>
               </div>
               <div class="col eliminar">
-                  <span> <i class="fa-solid fa-xmark"></i> </span>
+                <button (click)="borrarCarrito(carrito.id)" class="btn btn-danger">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
               </div>
               <div class="col precio">
-                  <span> $ 300,00</span>
+                <span>{{ carrito.foto.precio | currency }}</span>
               </div>
+            </div>
           </div>
+          
           <div class="finalizar-compra">
-                  <h3>Total Compra</h3>
-                  <div class="monto">$ 325,00</div>
-              <button class="btn-pagar">PAGAR</button>
+            <h3>Total Compra</h3>
+            <div class="monto">{{ totalCompra | currency }}</div> <!-- Aquí se muestra el total calculado -->
+            <button class="btn-pagar">PAGAR</button>
           </div>
-      </div>
-  </section>
+          
+
 
 </section>
+<script>
+  // Cambia la cantidad de productos
+  function cambiarCantidad(cantidad, button) {
+    var cantidadInput = button.parentElement.querySelector('input[name="cantidad"]');
+    var cantidadSpan = button.parentElement.querySelector('.total-cantidad');
+    var nuevaCantidad = parseInt(cantidadInput.value) + cantidad;
+    if (nuevaCantidad > 0) {
+      cantidadInput.value = nuevaCantidad;
+      cantidadSpan.textContent = nuevaCantidad;
+    }
+  }
+  
+    function calcularTotal() {
+  // Selecciona todos los elementos que representan una foto (ajusta el selector según tu HTML)
+  const fotos = document.querySelectorAll('.foto');
+
+  let total = 0;
+
+  fotos.forEach(foto => {
+    const precioElemento = foto.querySelector('.precio-foto'); // Ajusta el selector si es necesario
+    const cantidadElemento = foto.querySelector('input[name="cantidad-foto"]'); // Ajusta el selector si es necesario
+
+    const precio = parseFloat(precioElemento.textContent.replace('$', ''));
+    const cantidad = parseInt(cantidadElemento.value);
+
+    total += precio * cantidad;
+  });
+
+  // Selecciona el elemento donde se muestra el total y actualiza su contenido
+  const totalCompraElemento = document.querySelector('.monto');
+  totalCompraElemento.textContent = total.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+}
+// ... tu función cambiarCantidad ...
+
+</script>

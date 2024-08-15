@@ -14,10 +14,11 @@ export class RecursosService {
   private tarjetaUrl = 'http://localhost:3000/rest/tarjetas';
   private domicilioUrl = 'http://localhost:3000/rest/domicilios';
   private fotoUrl = 'http://localhost:3000/rest/fotos';
-
+  private carritoUrl = 'http://localhost:3000/rest/carritos';
 
   constructor(private http: HttpClient) { }
 
+  /*Crud Usuarios*/
   agregarUsuario(usuario: Usuario) {
     return this.http.post(`${this.usuarioUrl}/save`, usuario);
   }
@@ -31,6 +32,7 @@ export class RecursosService {
     return this.http.delete(`${this.usuarioUrl}/delete/${id}`);
   }
 
+   /*Crud Tarjetas*/
   agregarTarjeta(tarjeta: any) {
     return this.http.post(`${this.tarjetaUrl}/save`, tarjeta);
   }
@@ -44,6 +46,7 @@ export class RecursosService {
     return this.http.delete(`${this.tarjetaUrl}/delete/${id}`);
   }
 
+   /*Crud Domicilio*/
   agregarDomicilio(domicilio: any) {
     return this.http.post(`${this.domicilioUrl}/save`, domicilio);
   }
@@ -60,6 +63,24 @@ export class RecursosService {
     return this.http.delete(`${this.domicilioUrl}/delete/${id}`);
   }
 
+   /*Crud carrito*/
+  agregarCarrito(carrito: any) {
+    return this.http.post(`${this.carritoUrl}/save`, carrito);
+  }
+
+  calcularTotalCarrito(){
+    return this.http.get(`${this.carritoUrl}//calcularTotal/:userId`);
+  }
+
+  obtenerCarrito() {
+    return this.http.get(`${this.carritoUrl}/findAll/json`);
+  }
+
+  borrarCarrito(id: number) {
+    return this.http.delete(`${this.carritoUrl}/delete/${id}`);
+  }
+
+  /*Fotos*/
   obtenerFotos() {
     return this.http.get(`${this.fotoUrl}/findAll/json`);
   }
