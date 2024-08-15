@@ -66,7 +66,6 @@
 
   <!-- Formulario Agregar Tarjeta  -->
 <div *ngIf="currentForm === 'agregarTarjeta'" class="add-card-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-  <div class="add-tarjeta-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <h3 class="text-center">Agregar Nueva Tarjeta Bancaria</h3>
     <form (ngSubmit)="agregarTarjeta(tarjeta)" #tarjetaForm="ngForm">
       <div class="form-group mb-3">
@@ -90,7 +89,6 @@
         <button type="button" (click)="cancelarEdicionTarjeta()" class="btn btn-secondary" style="padding: 10px 20px; border-radius: 5px;">Cancelar</button>
       </div>
     </form>
-  </div>
 </div>
 
   <!-- Formulario Editar Tarjeta -->
@@ -120,6 +118,34 @@
     </form>
   </div>
 
+<!-- Formulario Agregar Domicilio -->
+<!-- <div *ngIf="currentForm === 'agregarDomicilio'" class="add-domicilio-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+  <h3 class="text-center">Agregar Nuevo Domicilio</h3>
+  <form (ngSubmit)="agregarDomicilio(domicilio)" #domicilioForm="ngForm">
+    <div class="form-group mb-3">
+      <label for="direccion" class="form-label text-center d-block">Dirección:</label>
+      <input type="text" id="direccion" [(ngModel)]="domicilio.direccion" name="direccion" class="form-control" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="ciudad" class="form-label text-center d-block">Ciudad:</label>
+      <input type="text" id="ciudad" [(ngModel)]="domicilio.ciudad" name="ciudad" class="form-control" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="provincia" class="form-label text-center d-block">Provincia:</label>
+      <input type="text" id="provincia" [(ngModel)]="domicilio.provincia" name="provincia" class="form-control" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="pais" class="form-label text-center d-block">País:</label>
+      <input type="text" id="pais" [(ngModel)]="domicilio.pais" name="pais" class="form-control" required>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!domicilioForm.form.valid">Agregar Domicilio</button>
+      <button type="button" (click)="cancelarEdicionDomicilio()" class="btn btn-secondary" style="padding: 10px 20px; border-radius: 5px;">Cancelar</button>
+    </div>
+  </form>
+</div> -->
+
+
 <!-- Formulario Editar Domicilio -->
 <div *ngIf="currentForm === 'domicilio'" class="edit-domicilio-form" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
   <h3 style="text-align: center;">Editar Domicilio</h3>
@@ -146,6 +172,5 @@
     </div>
   </form>
 </div>
-
 
 <!-- </section> -->
