@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../interfaz/usuario';
+import { Observable } from 'rxjs'; 
 import { Foto } from '../interfaz/foto';
 
 
@@ -63,4 +64,13 @@ export class RecursosService {
   obtenerFotos() {
     return this.http.get(`${this.fotoUrl}/findAll/json`);
   }
+
+  filtrarFotos(order: string): Observable<Foto[]> {
+    return this.http.get<Foto[]>(`${this.fotoUrl}/findAllByPrice/json?order=${order}`);
+  }
+
+    // Método para filtrar fotos por descripción
+    filtrarPorDescripcion(order: string): Observable<Foto[]> {
+      return this.http.get<Foto[]>(`${this.fotoUrl}/findAllByDescripcion/json?order=${order}`);
+    }
 }
