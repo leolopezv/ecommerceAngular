@@ -1,283 +1,68 @@
-/* Encabezado Sección */
-.header-seccion{
-    position: relative;
-    font-size: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding: 40px 50px;
+.contacto .fila {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.62);
 }
 
-.header-seccion .col{
-    width: 30%;
-}
-.header-seccion .link-blanco{
-    color: #fff;
-}
-
-.header-seccion .busqueda{
-    text-align: right;
-    font-size: 16px;
-}
-.header-seccion .busqueda a{
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    line-height: 30px;
-    color: #000;
-    text-decoration: none;
-    margin-left: 15px;
-    text-align: center;
-    transition: .3s;
-}
-.header-seccion .busqueda a:hover{
-    background-color: #0044cc;
-}
-.header-seccion .busqueda select{
-    font-size: 10px;
-    background-color: #d4e4ff;
-    border: none;
-    padding: 2px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-.header-seccion .centro{
-    font-size: 18px;
+.contacto input,
+.contacto textarea,
+.form-control {
+  width: 100%;
+  padding: 11px 13px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(15, 23, 42, 0.55);
+  color: #e2e8f0;
 }
 
+.btn-contacto,
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #0f172a;
+  font-weight: 700;
+  background: linear-gradient(135deg, #38bdf8, #a78bfa);
+}
+
+.contenedor-img {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
 
 .contenedor-img img {
-  max-width: 100%;
-  height: auto;
-}
-
-.contenedor-seccion {
-  text-align: center;
-}
-
-.informacion-contacto {
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.informacion-contacto .fila {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.informacion-contacto .col {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
-}
-
-.lista-contacto {
-  list-style: none;
-  padding: 0;
-}
-
-.lista-contacto li {
-  background: #dfe7f1;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.centrado {
-  text-align: center;
-}
-
-h3 {
-  color: #333;
-}
-
-p {
-  color: #666;
-}
-
-/* Contact styles */
-.contacto {
-  position: relative;
-  padding: 0 50px;
-}
-
-.contacto .fila {
-  padding: 50px 40px;
-  background: #d4e4ff;
-  border-radius: 40px;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: inset 0 0 20px 10px rgba(255, 255, 255, .4), 0px 0 10px 0 #000;
-}
-
-.contacto .fila .col {
-  width: 50%;
-}
-
-.contacto .fila .col input,
-.contacto .fila .col textarea {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: transparent;
-  border: 1px solid #4b5270;
-  border-radius: 20px;
-  background-color: #fff;
-}
-
-.contacto .fila .col .btn-contacto {
-  width: auto;
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
-  padding: 10px;
-  width: fit-content;
-  border-radius: 10px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.contacto .fila .col .btn-contacto.success {
-  background-color: #4CAF50;
-  color: #fff;
-  animation: successAnimation 1s ease-in-out;
-}
-
-.contacto .fila .col .btn-contacto.success:hover {
-  background-color: #45a049;
-  transform: translateY(-2px);
-}
-
-@keyframes successAnimation {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-/* Responsive styles */
-@media screen and (max-width: 950px) {
-  body {
-    padding: 20px;
-  }
-
-  .contenedor {
-    padding: 20px;
-  }
-
-  .contacto .fila {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contacto .fila .col {
-    width: 100%;
-  }
-
-  .contacto .fila .derecha {
-    display: none;
-  }
+  width: min(240px, 90%);
 }
 
 #servicios {
-  text-align: center;
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
   margin-top: 20px;
-}
-
-button[type="submit"] {
-  background-color: #85c1e9;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #5dade2;
-  transform: translateY(-2px);
-}
-
-button[type="button"] {
-  background-color: #f5b7b1;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-button[type="button"]:hover {
-  background-color: #f1948a;
-  transform: translateY(-2px);
-}
-
-.icon {
-  font-size: 24px;
-  margin-right: 10px;
-  color: #0e3e71;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.icon:hover {
-  transform: scale(1.2);
-  color: #85c1e9;
-}
-
-.icon-phone {
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-p {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.62);
 }
 
 .forum-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  gap: 10px;
 }
 
 .forum-post {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.74);
 }
 
-.forum-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.forum-header h3 {
-  margin: 0;
-}
-
-.post-date {
-  font-size: 0.9em;
-  color: #888;
-}
-
-.forum-content p {
-  margin: 0;
+@media (max-width: 900px) {
+  .contacto .fila {
+    grid-template-columns: 1fr;
+  }
 }
